@@ -1,20 +1,24 @@
 package java_chess;
 
+import java.util.ArrayList;
+
 public abstract class Piece {
-	// Extend for each type
-	// Define legal moves
-	// Store previous moves
-	// Colour
-	public int[][] getLegalMoves(Board b) {
-//		int[][] with row, col coords of each possible move
-		int[][] moves = new int[0][0];
-		return moves;
+	protected final String PIECE_IMAGE_BASE_PATH = "./piece_images/";
+	protected ArrayList<ArrayList<Integer>> moves;
+	protected PieceColour colour;
+	
+	public Piece(PieceColour colour) {
+		this.moves = new ArrayList<ArrayList<Integer>>();
+		this.colour = colour;
 	}
 	
-	// 
-	public void move(Board b) {
-		
-	}
+//	int[][] with row, col coords of each possible move
+	public abstract int[][] getLegalMoves(Board b);
+
+	public abstract void move(Board b);
+
+	public abstract void draw();
 	
+	public abstract void setPos(int x, int y);
 
 }

@@ -1,5 +1,7 @@
 package java_chess;
 
+import java.io.File;
+
 import javax.swing.JFrame;
 
 public class Main {
@@ -15,8 +17,6 @@ public class Main {
 		GamePanel gamePanel = new GamePanel();
 		window.add(gamePanel);
 		window.pack();
-		
-
 		
 		gamePanel.startGameThread();
 		 
