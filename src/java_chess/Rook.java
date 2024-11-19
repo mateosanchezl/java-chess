@@ -9,28 +9,10 @@ import java.net.URL;
 import javax.imageio.ImageIO;
 
 public class Rook extends Piece {
-	private final String LIGHT_IMAGE_FILE = "Chess_rlt60.png";
-	private final String DARK_IMAGE_FILE = "Chess_rdt60.png";
-	private BufferedImage image;
-	private String imagePath;
-	private final int val = 5;
+	private final int val = 1;
 
 	public Rook(PieceColour colour) {
-		super(colour);
-		String fileName = colour == PieceColour.LIGHT ? LIGHT_IMAGE_FILE : DARK_IMAGE_FILE;
-
-        // Use getClass().getResource() to load the image
-        URL imageUrl = getClass().getResource("/piece_images/" + fileName);
-
-        if (imageUrl != null) {
-            try {
-                image = ImageIO.read(imageUrl);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        } else {
-            System.err.println("Image not found: " + "/piece_images/" + fileName);
-        }
+		super(colour, "Chess_rlt60.png", "Chess_rdt60.png");
 	}
 
 	@Override
