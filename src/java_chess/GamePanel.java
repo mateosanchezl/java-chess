@@ -9,8 +9,6 @@ import java.io.File;
 import javax.swing.JPanel;
 
 public class GamePanel extends JPanel implements Runnable {
-	private static final long serialVersionUID = 1519134142062679416L;
-
 	// Thread
 	Thread gameThread;
 

@@ -1,9 +1,9 @@
 package java_chess;
 
+import java.awt.Graphics2D;
 import java.util.ArrayList;
 
 public abstract class Piece {
-	protected final String PIECE_IMAGE_BASE_PATH = "./piece_images/";
 	protected ArrayList<ArrayList<Integer>> moves;
 	protected PieceColour colour;
 	
@@ -17,7 +17,7 @@ public abstract class Piece {
 
 	public abstract void move(Board b);
 
-	public abstract void draw();
+	public abstract void draw(Graphics2D g2, int x, int y, int size);
 	
 	public abstract void setPos(int x, int y);
 

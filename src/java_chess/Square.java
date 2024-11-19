@@ -22,11 +22,14 @@ public class Square {
 		g2.setColor(this.colour);
 		g2.setStroke(new BasicStroke());
 		g2.fillRect(x, y, this.size, this.size);
+		
+		if(this.piece != null) {
+			this.piece.draw(g2, x, y, this.size);
+		}
 	}
 
 	public int[] getPos() {
 		int[] pos = { this.row, this.col };
-
 		return pos;
 	}
 
