@@ -47,7 +47,7 @@ public abstract class Piece {
     ;
 
     //	int[][] with row, col coords of each possible move
-    public abstract int[][] getLegalMoves(Board b);
+    public abstract ArrayList<int[]> getLegalMoves(Board b);
 
     public abstract void move(Board b);
 

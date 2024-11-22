@@ -5,6 +5,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
@@ -16,7 +17,7 @@ public class Rook extends Piece {
     }
 
     @Override
-    public int[][] getLegalMoves(Board b) {
+    public ArrayList<int[]> getLegalMoves(Board b) {
         // TODO Auto-generated method stub
         return null;
     }

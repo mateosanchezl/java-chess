@@ -1,12 +1,14 @@
 package java_chess;
 
+import java.util.ArrayList;
+
 public class King extends Piece {
     public King(PieceColour colour, int i, int j) {
         super(colour, "Chess_klt60.png", "Chess_kdt60.png", i, j);
     }
 
     @Override
-    public int[][] getLegalMoves(Board b) {
+    public ArrayList<int[]> getLegalMoves(Board b) {
         // TODO Auto-generated method stub
         return null;
     }

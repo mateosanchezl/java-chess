@@ -1,5 +1,7 @@
 package java_chess;
 
+import java.util.ArrayList;
+
 public class Queen extends Piece {
     private final int val = 9;
 
@@ -8,8 +10,8 @@ public class Queen extends Piece {
     }
 
     @Override
-    public int[][] getLegalMoves(Board b) {
-        // TODO Auto-generated method stub
+    public ArrayList<int[]> getLegalMoves(Board b) {
+        // TODO Auto-generated method stu
         return null;
     }
 

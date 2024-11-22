@@ -2,6 +2,7 @@ package java_chess;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.util.ArrayList;
 import java.util.Map;
 
 public class Board {
@@ -54,6 +55,11 @@ public class Board {
         }
 
         this.initialised = true;
+        ArrayList<int[]> legMoves = this.board[1][3].getPiece().getLegalMoves(this);
+        System.out.println("Pawn at " + 1 + " " + 3 + " has moves: ");
+        for (int[] move : legMoves) {
+            System.out.println(move[0] + " " + move[1]);
+        }
     }
 
     public void draw(Graphics2D g2, int padding) {
