@@ -10,41 +10,17 @@ import javax.imageio.ImageIO;
 public abstract class Piece {
     protected ArrayList<ArrayList<Integer>> moves;
     protected PieceColour colour;
-    protected BufferedImage image;
-    protected String LIGHT_IMAGE_FILE;
-    protected String DARK_IMAGE_FILE;
     protected int row;
     protected int col;
+    protected char pieceChar;
 
-    public Piece(PieceColour colour, String lightImagePath, String darkImagePath, int row, int col) {
+    public Piece(PieceColour colour, int row, int col, char pieceChar) {
         this.moves = new ArrayList<>();
         this.colour = colour;
-        this.LIGHT_IMAGE_FILE = lightImagePath;
-        this.DARK_IMAGE_FILE = darkImagePath;
         this.row = row;
         this.col = col;
-
-        String fileName = this.colour == PieceColour.LIGHT ? this.LIGHT_IMAGE_FILE : this.DARK_IMAGE_FILE;
-        URL imageUrl = getClass().getResource("/piece_images/" + fileName);
-
-        if (imageUrl != null) {
-            try {
-                this.image = ImageIO.read(imageUrl);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        } else {
-            System.err.println("Image not found: " + "/piece_images/" + fileName);
-        }
+        this.pieceChar = pieceChar;
     }
-
-    public void draw(Graphics2D g2, int x, int y, int size) {
-        if (image != null) {
-            g2.drawImage(image, x, y, size, size, null);
-        }
-    }
-
-    ;
 
     //	int[][] with row, col coords of each possible move
     public abstract ArrayList<int[]> getLegalMoves(Board b);
@@ -52,5 +28,9 @@ public abstract class Piece {
     public abstract void move(Board b);
 
     public abstract void setPos(int x, int y);
-    
+
+    public char getChar() {
+        return this.pieceChar;
+    }
+
 }

@@ -6,7 +6,7 @@ public class Pawn extends Piece {
     private final int val = 1;
 
     public Pawn(PieceColour colour, int i, int j) {
-        super(colour, "Chess_plt60.png", "Chess_pdt60.png", i, j);
+        super(colour, i, j, colour == PieceColour.LIGHT ? 'p' : 'P');
     }
 
     @Override
@@ -15,7 +15,6 @@ public class Pawn extends Piece {
         Square[][] boardMatrix = b.getBoard();
 
         // TODO: Array out of bounds fix
-        System.out.println("Row col: " + row + col);
         if (this.colour == PieceColour.LIGHT) {
             // Move forward
             if (this.row - 1 >= 0) {
@@ -32,37 +31,45 @@ public class Pawn extends Piece {
 
             }
             // Take on diagonals
-            if (this.row - 1 >= 0 && this.col + 1 < boardMatrix[0].length) {
-                if (boardMatrix[this.row - 1][this.col + 1].getPiece().getClass() == Pawn.class) {
-                    legalMoves.add(new int[]{-1, 1});
+            if (this.row - 1 >= 0 && this.col + 1 < boardMatrix[0].length - 1) {
+                if (boardMatrix[this.row - 1][this.col + 1].getPiece() != null) {
+                    if (boardMatrix[this.row - 1][this.col + 1].getPiece().getClass().getSuperclass() == Piece.class) {
+                        legalMoves.add(new int[]{-1, 1});
+                    }
                 }
             }
             if (this.row - 1 >= 0 && this.col - 1 >= 0) {
-                if (boardMatrix[this.row - 1][this.col - 1].getPiece().getClass() == Pawn.class) {
-                    legalMoves.add(new int[]{-1, -1});
+                if (boardMatrix[this.row - 1][this.col - 1].getPiece() != null) {
+                    if (boardMatrix[this.row - 1][this.col - 1].getPiece().getClass().getSuperclass() == Piece.class) {
+                        legalMoves.add(new int[]{-1, -1});
+                    }
                 }
             }
-
         } else {
-            if (boardMatrix[this.row + 1][this.col].getPiece() == null) {
-                legalMoves.add(new int[]{1, 0});
+            if (this.row + 1 < boardMatrix.length - 1) {
+                if (boardMatrix[this.row + 1][this.col].getPiece() == null) {
+                    legalMoves.add(new int[]{1, 0});
+                }
             }
-
             if (this.moves.isEmpty()) {
                 if (boardMatrix[this.row + 2][this.col].getPiece() == null && boardMatrix[this.row + 1][this.col].getPiece() == null) {
                     legalMoves.add(new int[]{2, 0});
                 }
             }
 
-            if (boardMatrix[this.row + 1][this.col + 1].getPiece() != null) {   // TODO: Add this check for light colour
-                if (boardMatrix[this.row + 1][this.col + 1].getPiece().getClass() == Pawn.class) {
-                    legalMoves.add(new int[]{1, 1});
+            if (this.row + 1 < boardMatrix.length - 1 && this.col + 1 < boardMatrix[0].length) {
+                if (boardMatrix[this.row + 1][this.col + 1].getPiece() != null) {   // TODO: Add this check for light colour
+                    if (boardMatrix[this.row + 1][this.col + 1].getPiece().getClass().getSuperclass() == Piece.class) {
+                        legalMoves.add(new int[]{1, 1});
+                    }
                 }
             }
 
-            if (boardMatrix[this.row + 1][this.col - 1].getPiece() != null) {
-                if (boardMatrix[this.row + 1][this.col - 1].getPiece().getClass() == Pawn.class) {
-                    legalMoves.add(new int[]{1, -1});
+            if (this.row + 1 < boardMatrix.length - 1 && this.col - 1 >= 0) {
+                if (boardMatrix[this.row + 1][this.col - 1].getPiece() != null) {
+                    if (boardMatrix[this.row + 1][this.col - 1].getPiece().getClass().getSuperclass() == Piece.class) {
+                        legalMoves.add(new int[]{1, -1});
+                    }
                 }
             }
 

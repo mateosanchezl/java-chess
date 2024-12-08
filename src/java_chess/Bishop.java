@@ -6,7 +6,7 @@ public class Bishop extends Piece {
     private final int val = 3;
 
     public Bishop(PieceColour colour, int i, int j) {
-        super(colour, "Chess_blt60.png", "Chess_bdt60.png", i, j);
+        super(colour, i, j, colour == PieceColour.LIGHT ? 'b' : 'B');
     }
 
     @Override

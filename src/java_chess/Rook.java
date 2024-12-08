@@ -13,7 +13,7 @@ public class Rook extends Piece {
     private final int val = 1;
 
     public Rook(PieceColour colour, int i, int j) {
-        super(colour, "Chess_rlt60.png", "Chess_rdt60.png", i, j);
+        super(colour, i, j, colour == PieceColour.LIGHT ? 'r' : 'R');
     }
 
     @Override
@@ -32,13 +32,6 @@ public class Rook extends Piece {
     public void setPos(int x, int y) {
         // TODO Auto-generated method stub
 
-    }
-
-    @Override
-    public void draw(Graphics2D g2, int x, int y, int size) {
-        if (image != null) {
-            g2.drawImage(image, x, y, size, size, null);
-        }
     }
 
 }

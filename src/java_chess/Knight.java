@@ -6,7 +6,7 @@ public class Knight extends Piece {
     private final int val = 3;
 
     public Knight(PieceColour colour, int i, int j) {
-        super(colour, "Chess_nlt60.png", "Chess_ndt60.png", i, j);
+        super(colour, i, j, colour == PieceColour.LIGHT ? 'n' : 'N');
     }
 
     @Override

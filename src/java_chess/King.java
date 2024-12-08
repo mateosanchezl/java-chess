@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class King extends Piece {
     public King(PieceColour colour, int i, int j) {
-        super(colour, "Chess_klt60.png", "Chess_kdt60.png", i, j);
+        super(colour, i, j, colour == PieceColour.LIGHT ? 'k' : 'K');
     }
 
     @Override

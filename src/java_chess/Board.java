@@ -55,31 +55,38 @@ public class Board {
         }
 
         this.initialised = true;
-        ArrayList<int[]> legMoves = this.board[1][3].getPiece().getLegalMoves(this);
-        System.out.println("Pawn at " + 1 + " " + 3 + " has moves: ");
-        for (int[] move : legMoves) {
-            System.out.println(move[0] + " " + move[1]);
-        }
-    }
-
-    public void draw(Graphics2D g2, int padding) {
-        if (this.initialised) {
-            int x = 0 + padding / 2;
-            int y = 0 + padding / 2;
-
-            for (Square[] row : this.board) {
-                for (Square sq : row) {
-                    sq.draw(x, y, g2);
-                    x += boardSqSize;
+        for (int i = 0; i < this.board.length; i++) {
+            for (int j = 0; j < this.board.length; j++) {
+                if (this.board[i][j].getPiece() != null) {
+                    if (this.board[i][j].getPiece().getClass() == Pawn.class) {
+                        ArrayList<int[]> legMoves = this.board[i][j].getPiece().getLegalMoves(this);
+                        System.out.println("Pawn at " + i + " " + j + " has moves: ");
+                        for (int[] move : legMoves) {
+                            System.out.println(move[0] + " " + move[1]);
+                        }
+                    }
                 }
-                x = 0 + padding / 2;
-                y += boardSqSize;
             }
         }
+
     }
 
     public Square[][] getBoard() {
         return this.board;
+    }
+
+    public void showState() {
+        for (Square[] row : this.board) {
+            for (Square sq : row) {
+                if (sq.getPiece() != null) {
+
+                    System.out.print("[ " + sq.getPiece().getChar() + " ]");
+                } else {
+                    System.out.print("[   ]");
+                }
+            }
+            System.out.print("\n");
+        }
     }
 
     public void setBoard(Square[][] board) {
