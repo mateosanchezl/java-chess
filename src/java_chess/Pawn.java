@@ -15,10 +15,13 @@ public class Pawn extends Piece {
         Square[][] boardMatrix = b.getBoard();
 
         // TODO: Array out of bounds fix
+        System.out.println("Row col: " + row + col);
         if (this.colour == PieceColour.LIGHT) {
             // Move forward
-            if (boardMatrix[this.row - 1][this.col].getPiece() == null) {
-                legalMoves.add(new int[]{-1, 0});
+            if (this.row - 1 >= 0) {
+                if (boardMatrix[this.row - 1][this.col].getPiece() == null) {
+                    legalMoves.add(new int[]{-1, 0});
+                }
             }
             // Pawn hasn't moved
             if (this.moves.isEmpty()) {
@@ -29,11 +32,15 @@ public class Pawn extends Piece {
 
             }
             // Take on diagonals
-            if (boardMatrix[this.row - 1][this.col + 1].getPiece().getClass() == Pawn.class) {
-                legalMoves.add(new int[]{-1, 1});
+            if (this.row - 1 >= 0 && this.col + 1 < boardMatrix[0].length) {
+                if (boardMatrix[this.row - 1][this.col + 1].getPiece().getClass() == Pawn.class) {
+                    legalMoves.add(new int[]{-1, 1});
+                }
             }
-            if (boardMatrix[this.row - 1][this.col - 1].getPiece().getClass() == Pawn.class) {
-                legalMoves.add(new int[]{-1, -1});
+            if (this.row - 1 >= 0 && this.col - 1 >= 0) {
+                if (boardMatrix[this.row - 1][this.col - 1].getPiece().getClass() == Pawn.class) {
+                    legalMoves.add(new int[]{-1, -1});
+                }
             }
 
         } else {

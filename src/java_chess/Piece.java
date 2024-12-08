@@ -52,5 +52,5 @@ public abstract class Piece {
     public abstract void move(Board b);
 
     public abstract void setPos(int x, int y);
-
+    
 }
