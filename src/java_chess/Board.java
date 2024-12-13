@@ -1,8 +1,7 @@
 package java_chess;
 
 import java.awt.Color;
-import java.awt.Graphics2D;
-import java.util.ArrayList;
+import java.io.IOException;
 import java.util.Map;
 
 public class Board {
@@ -16,7 +15,8 @@ public class Board {
     private static final Color light = new Color(245, 245, 220);
 
     private Square[][] board;
-    private boolean initialised = false;
+
+    private PieceColour colourTurn = PieceColour.LIGHT;
 
     private void initialisePieceRow(Square[] row, PieceColour colour, int rowIndex) {
         Map<Integer, Piece> initialPiecePlacementMap = Map.of(0, new Rook(colour, rowIndex, 0), 1, new Knight(colour, rowIndex, 1), 2,
@@ -30,6 +30,15 @@ public class Board {
 
     public int getBoardSqSize() {
         return boardSqSize;
+    }
+
+    public PieceColour pieceColourTurn() {
+        return this.colourTurn;
+    }
+
+    public void changeTurn() {
+        if (this.colourTurn == PieceColour.LIGHT) this.colourTurn = PieceColour.DARK;
+        else this.colourTurn = PieceColour.LIGHT;
     }
 
     public void initialiseState() {
@@ -53,22 +62,6 @@ public class Board {
             else if (i == 7)
                 initialisePieceRow(this.board[i], PieceColour.LIGHT, i);
         }
-
-        this.initialised = true;
-        for (int i = 0; i < this.board.length; i++) {
-            for (int j = 0; j < this.board.length; j++) {
-                if (this.board[i][j].getPiece() != null) {
-                    if (this.board[i][j].getPiece().getClass() == Pawn.class) {
-                        ArrayList<int[]> legMoves = this.board[i][j].getPiece().getLegalMoves(this);
-                        System.out.println("Pawn at " + i + " " + j + " has moves: ");
-                        for (int[] move : legMoves) {
-                            System.out.println(move[0] + " " + move[1]);
-                        }
-                    }
-                }
-            }
-        }
-
     }
 
     public Square[][] getBoard() {
@@ -87,6 +80,24 @@ public class Board {
             }
             System.out.print("\n");
         }
+    }
+
+    public void executeMove(int[] move) throws IOException {
+        if (move.length != 4) {
+            throw new IOException("Invalid move length");
+        }
+        int row = move[0];
+        int col = move[1];
+        int rowDiff = move[2];
+        int colDiff = move[3];
+        for (int n : move) {
+            System.out.println(n);
+        }
+
+        this.board[row + rowDiff][col + colDiff].setPiece(this.board[row][col].getPiece());
+        this.board[row][col].clear();
+
+        this.changeTurn();
     }
 
     public void setBoard(Square[][] board) {

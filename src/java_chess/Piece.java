@@ -33,4 +33,8 @@ public abstract class Piece {
         return this.pieceChar;
     }
 
+    public PieceColour getColour() {
+        return this.colour;
+    }
+
 }
